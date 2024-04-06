@@ -263,6 +263,46 @@ void TEST_5_transposeIfMatrixHasNotEqualSumOfRows(void)
     freeMemMatrix(&test);
 }
 
+void TEST_6_isMutuallyInverseMatrices(void)
+{
+    int data_1[9] =
+    {
+        2, -1, 0,
+        0, 2, -1,
+        -1, -1, 1
+    };
+
+    int data_2[9] =
+    {
+        1, 1, 1,
+        1, 2, 2,
+        2, 3, 4
+    };
+
+    matrix test_1 = createMatrixFromArray(data_1, 3, 3);
+    matrix test_2 = createMatrixFromArray(data_2, 3, 3);
+    matrix result;
+    bool answ = true;
+
+    if(isSquareMatrix(&test_1) && isSquareMatrix(&test_2))
+    {
+        result = multiplyMatrices(&test_1, &test_2);
+
+        if (isEMatrix(&result))
+        {
+            printf("Test 6 passed \n \n");
+        }
+        else
+        {
+            printf("Test 6 failed \n \n");
+        }
+    }
+
+    freeMemMatrix(&test_1);
+    freeMemMatrix(&test_2);
+    freeMemMatrix(&result);
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -274,4 +314,6 @@ int main()
     TEST_4_squareMatrixIfSymmetric();
 
     TEST_5_transposeIfMatrixHasNotEqualSumOfRows();
+
+    TEST_6_isMutuallyInverseMatrices();
 }
