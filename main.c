@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+
 int getMax (int *arr, int size)
 {
     int max = INT16_MIN;
@@ -164,9 +165,36 @@ void TEST_2_sortRows(void)
     freeMemMatrix(&test);
 }
 
+void TEST_3_sortColumns(void)
+{
+    int data[18] =
+    {
+        3, 5, 2, 4, 3, 3,
+        2, 5, 1, 8, 2, 7,
+        6, 1, 4, 4, 8, 3
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 6);
+
+    selectionSortColsMatrixByColCriteria(&test, getMin);
+
+    if(getElementMatrix(&test, 2, 0) == 1)
+    {
+        printf("Test 3 passed \n \n");
+    }
+    else
+    {
+        printf("Test 3 failed \n \n");
+    }
+
+    freeMemMatrix(&test);
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
 
     TEST_2_sortRows();
+
+    TEST_3_sortColumns();
 }
