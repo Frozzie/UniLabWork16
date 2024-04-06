@@ -385,6 +385,20 @@ matrix multiplyMatrices (matrix *a, matrix *b)
     return result;
 }
 
+matrix getSquareOfMatrixIfSymmetric (matrix *m)
+{
+    matrix result;
+    
+    if(isSquareMatrix(m) && isSymmetricMatrix(m))
+    {
+        result = multiplyMatrices(m, m);
+    }
+
+    return result;
+
+    freeMemMatrix(&result);
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);

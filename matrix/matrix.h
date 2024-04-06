@@ -50,6 +50,7 @@ int         getElementMatrix                        (matrix *m, int i, int j);
 void        putElementMatrix                        (matrix *m, int i, int j, int val);
 bool        isMatrixEqual                           (matrix *m, matrix *n);
 matrix      multiplyMatrices                        (matrix *a, matrix *b);
+matrix      getSquareOfMatrixIfSymmetric            (matrix *m);
 matrix      createMatrixFromArray                   (int *a, int nRows, int nCols);
 matrix     *createArrayOfMatrixFromArray            (const int *values, int nMatrices, int nRows, int nCols);
 #endif // MATRIX_H

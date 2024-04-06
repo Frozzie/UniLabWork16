@@ -190,6 +190,33 @@ void TEST_3_sortColumns(void)
     freeMemMatrix(&test);
 }
 
+void TEST_4_squareMatrixIfSymmetric(void)
+{
+    int data[16] =
+    {
+        1, 2, 3, 4,
+        2, 3, 4, 5,
+        3, 4, 5, 6,
+        4, 5, 6, 7
+    };
+
+    matrix test = createMatrixFromArray(data, 4, 4);
+
+    matrix result = getSquareOfMatrixIfSymmetric(&test);
+
+    if (getElementMatrix(&result, 3, 3) == 126)
+    {
+        printf("Test 4 passed \n \n");
+    }
+    else
+    {
+        printf("Test 4 failed \n \n");
+    }
+
+    freeMemMatrix(&test);
+    freeMemMatrix(&result);
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -197,4 +224,6 @@ int main()
     TEST_2_sortRows();
 
     TEST_3_sortColumns();
+
+    TEST_4_squareMatrixIfSymmetric();
 }
