@@ -303,6 +303,31 @@ void TEST_6_isMutuallyInverseMatrices(void)
     freeMemMatrix(&result);
 }
 
+void TEST_7_findSumOfMaxesOfPseudoDiagonal(void)
+{
+    int data[12] =
+    {
+        3, 2, 5, 4,
+        1, 3, 6, 3,
+        3, 2, 1, 2,
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 4);
+
+    long long sum;
+
+    sum = findSumOfMaxesOfPseudoDiagonal(&test);
+
+    if(sum == 23)
+    {
+        printf("Test 7 passed \n \n");
+    }
+    else
+    {
+        printf("Test 7 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -316,4 +341,6 @@ int main()
     TEST_5_transposeIfMatrixHasNotEqualSumOfRows();
 
     TEST_6_isMutuallyInverseMatrices();
+
+    TEST_7_findSumOfMaxesOfPseudoDiagonal();
 }

@@ -462,6 +462,36 @@ void transposeMatrix(matrix *m)
     }
 }
 
+long long findSumOfMaxesOfPseudoDiagonal(matrix *m)
+{
+    int mem, max;
+
+    long long sum = 0;
+
+    for(int i = 0 - m->nRows + 1; i < m->nCols; i++)
+    {
+        max = INT16_MIN;
+        for(int j = 0; j < m->nRows; j++)
+        {
+            int a = i + j;
+
+            if (a >= 0 && a < m->nCols)
+            {
+                mem = getElementMatrix(m, j, a);
+
+                if(max < mem)
+                {
+                    max = mem;
+                }
+            }
+        }
+
+        sum += max;
+    }
+
+    return sum;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);
