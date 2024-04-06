@@ -547,6 +547,82 @@ void TEST_14_printMatrixWithMaxZeroRows(void)
     printf("Test 14 passed \n \n");
 }
 
+void TEST_15_printMatrixWithMinNumOfMaxNum(void)
+{
+    #define AMOUNT_MAT_3 4
+    int data[AMOUNT_MAT_3][4] =
+    {
+        {
+            7, 1,
+            1, 1
+        },
+        {
+            1, 6,
+            2, 2
+        },
+        {
+            5, 4,
+            2, 3
+        },
+        {
+            1, 3,
+            7, 9
+        }
+    };
+
+    matrix *test = getMemArrayOfMatrices(AMOUNT_MAT_3, 2, 2);
+
+    for(int i = 0; i < AMOUNT_MAT_3; i++)
+    {
+        matrix a = test[i];
+        memcpy(a.values[0], &data[i][0], sizeof(int) * 2);
+        memcpy(a.values[1], &data[i][2], sizeof(int) * 2);
+    }
+
+    int max, minOfMax = INT32_MAX, arr_max[AMOUNT_MAT_3];
+
+    for(int a = 0; a < AMOUNT_MAT_3; a++)
+    {
+        matrix m = test[a];
+        max = INT32_MIN;
+
+        for(int i = 0; i < m.nRows; i++)
+        {
+            for(int j = 0; j < m.nCols; j++)
+            {
+                int num = getElementMatrix(&m, i, j);
+
+                if(num < 0)
+                {
+                    num = -num;
+                }
+
+                if(max < num)
+                {
+                    max = num;
+                }
+            }
+        }
+
+        arr_max[a] = max;
+
+        if(max < minOfMax)
+        {
+            minOfMax = max;
+        }
+    }
+
+    for(int a = 0; a < AMOUNT_MAT_3; a++)
+    {
+        if(arr_max[a] == minOfMax)
+        {
+            outputMatrix(&test[a]);
+        }
+    }
+    
+    printf("\nTest 15 passed \n \n");
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -576,4 +652,6 @@ int main()
     TEST_13_countNonDescendingRowsMatrices();
 
     TEST_14_printMatrixWithMaxZeroRows();
+
+    TEST_15_printMatrixWithMinNumOfMaxNum();
 }
