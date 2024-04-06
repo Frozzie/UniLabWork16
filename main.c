@@ -380,6 +380,34 @@ void TEST_9_sortByDistances(void)
     }
 }
 
+void TEST_10_countEqClassesByRowsSum(void)
+{
+    int data[12] =
+    {
+        7, 1,
+        2, 7,
+        5, 4,
+        4, 3,
+        1, 6,
+        8, 0
+    };
+
+    matrix test = createMatrixFromArray(data, 6, 2);
+
+    insertionSortRowsMatrixByRowCriteria (&test, rowSum);
+
+    int unique = countEqClassesByRowsSum(&test);
+
+    if(unique == 3)
+    {
+        printf("Test 10 passed \n \n");
+    }
+    else
+    {
+        printf("Test 10 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -399,4 +427,6 @@ int main()
     TEST_8_getMinInArea();
 
     TEST_9_sortByDistances();
+
+    TEST_10_countEqClassesByRowsSum();
 }

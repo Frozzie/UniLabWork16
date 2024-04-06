@@ -562,6 +562,47 @@ int getMinInArea(matrix *m)
     return min;
 }
 
+int countNUnique(long long *a, int n)
+{
+    int count = 0, unique = n;
+    for(int i = 0; i < n; i++)
+    {
+        if(a[count] == a[i] && count != i)
+        {
+            count++;
+            i = count;
+            unique--;
+        }
+        else if(a[count] == a[count - 1])
+        {
+            count++;
+        }
+    }
+
+    return unique;
+}
+
+int countEqClassesByRowsSum(matrix *m)
+{
+    long long sum_arr[m->nRows], sum = 0;
+    int unique = m->nRows, count = 0;
+
+    for(int i = 0; i < m->nRows; i++)
+    {
+        for(int j = 0; j < m->nCols; j++)
+        {
+            sum += getElementMatrix(m, i, j);
+        }
+
+        sum_arr[i] = sum;
+        sum = 0;
+    }
+
+    unique = countNUnique(sum_arr, m->nRows);
+
+    return unique;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);
