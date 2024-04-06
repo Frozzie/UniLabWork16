@@ -164,6 +164,38 @@ void insertionSortRowsMatrixByRowCriteria (matrix *m, int (*criteria)(int*, int)
     free(sum);
 }  
 
+void insertionSortRowsMatrixByRowCriteriaF (matrix *m, float (*criteria)(int*, int))
+{
+    float *sum;
+
+    sum = malloc(sizeof(float) * (unsigned int)m->nRows);
+
+    for(int i = 0; i < m->nRows; i++) // получаем временный массив критериев
+    {
+        sum[i] = criteria(m->values[i], m->nCols);
+    }
+ 
+    // сортировка вставками
+    for (int i = 1; i < m->nRows; i++)
+    {
+        int newElement = sum[i];
+        int *new_row = m->values[i];
+        int location = i - 1;
+
+        while(location >= 0 && sum[location] > newElement)
+        {
+            sum[location + 1] = sum[location];
+            swapRows(m, location + 1, location);
+            location--;
+        }
+
+        sum[location + 1] = newElement;
+        m->values[location + 1] = new_row;
+    }
+    
+    free(sum);
+}
+
 void selectionSortColsMatrixByColCriteria (matrix *m, int (*criteria)(int *, int))
 {
     int *arr, *sum;

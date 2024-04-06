@@ -351,6 +351,35 @@ void TEST_8_getMinInArea(void)
     }
 }
 
+void TEST_9_sortByDistances(void)
+{
+    int data[18] =
+    {
+        4, 2, 1,
+        3, 4, 2,
+        1, 1, 1,
+        3, 5, 4,
+        6, 4, 2,
+        5, 3, 4
+    };
+
+    matrix test = createMatrixFromArray(data, 6, 3);
+
+    float distance[6], math;
+    int count = 0;
+
+    insertionSortRowsMatrixByRowCriteriaF(&test, getDist);
+
+    if(getElementMatrix(&test, 0, 2) == 1)
+    {
+        printf("Test 9 passed \n \n");
+    }
+    else
+    {
+        printf("Test 9 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -368,4 +397,6 @@ int main()
     TEST_7_findSumOfMaxesOfPseudoDiagonal();
 
     TEST_8_getMinInArea();
+
+    TEST_9_sortByDistances();
 }
