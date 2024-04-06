@@ -217,6 +217,52 @@ void TEST_4_squareMatrixIfSymmetric(void)
     freeMemMatrix(&result);
 }
 
+void TEST_5_transposeIfMatrixHasNotEqualSumOfRows(void)
+{
+    int data[16] =
+    {
+        1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12,
+        13, 14, 15, 16
+    };
+
+    matrix test = createMatrixFromArray(data, 4, 4);
+
+    int m = 0;
+    long long mem[4];
+
+    for(int i = 0; i < test.nRows; i++)
+    {
+        int row[4], x = 0;
+
+        for(int j = 0; j < test.nCols; j++)
+        {
+            row[x++] = getElementMatrix(&test, i, j);
+        }
+
+        long long sum = getSum(row, 4);
+
+        mem[m++] = sum;
+    }
+
+    if(isUnique(mem, 4))
+    {
+        transposeSquareMatrix(&test);
+    }
+
+    if (getElementMatrix(&test, 3, 2) == 12)
+    {
+        printf("Test 5 passed \n \n");
+    }
+    else
+    {
+        printf("Test 5 failed \n \n");
+    }
+
+    freeMemMatrix(&test);
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -226,4 +272,6 @@ int main()
     TEST_3_sortColumns();
 
     TEST_4_squareMatrixIfSymmetric();
+
+    TEST_5_transposeIfMatrixHasNotEqualSumOfRows();
 }

@@ -399,6 +399,69 @@ matrix getSquareOfMatrixIfSymmetric (matrix *m)
     freeMemMatrix(&result);
 }
 
+long long getSum(int *a, int n)
+{
+    long long sum = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        sum += a[i];
+    }
+
+    return sum;
+}
+
+void transposeSquareMatrix(matrix *m)
+{
+    if(isSquareMatrix(m))
+    {
+        int *row;
+
+        for(int i = 0; i < m->nRows; i++)
+        {
+            row = m->values[i];
+
+            for(int j = i + 1; j < m->nCols; j++)
+            {
+                int temp = row[j];
+                row[j] = getElementMatrix(m, j, i);
+                putElementMatrix(m, j, i, temp);
+            }
+        }
+    }
+    else
+    {
+        transposeMatrix(m);
+    }
+}
+
+void transposeMatrix(matrix *m)
+{
+    if(isSquareMatrix(m))
+    {
+        transposeSquareMatrix(m);
+    }
+    else
+    {
+        int *row;
+
+        matrix new = getMemMatrix(m->nCols, m->nRows);
+
+        for(int i = 0; i < m->nRows; i++)
+        {
+            row = m->values[i];
+
+            for(int j = 0; j < m->nCols; j++)
+            {
+                putElementMatrix(&new, j, i, row[j]);
+            }
+        }
+
+        freeMemMatrix(m);
+        m = &new;
+    }
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);
