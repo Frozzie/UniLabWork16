@@ -603,6 +603,37 @@ int countEqClassesByRowsSum(matrix *m)
     return unique;
 }
 
+int getNSpecialElement(matrix *m)
+{
+    int sum, max, num, special = 0;
+
+    for(int i = 0; i < m->nCols; i++)
+    {
+        sum = 0;
+        max = INT32_MIN;
+
+        for(int j = 0; j < m->nRows; j++)
+        {
+            num = getElementMatrix(m, j, i);
+            sum += num;
+
+            if(max < num)
+            {
+                max = num;
+            }
+        }
+
+        sum -= max;
+
+        if(max > sum)
+        {
+            special++;
+        }
+    }
+
+    return special;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);

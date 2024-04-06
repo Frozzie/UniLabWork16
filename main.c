@@ -408,6 +408,31 @@ void TEST_10_countEqClassesByRowsSum(void)
     }
 }
 
+void TEST_11_getNSpecialElement(void)
+{
+    int data[12] =
+    {
+        3, 5, 5, 4,
+        2, 3, 6, 7,
+        12, 2, 1, 2
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 4);
+
+    int special = getNSpecialElement(&test);
+
+    if(special == 2)
+    {
+        printf("Test 11 passed \n \n");
+    }
+    else
+    {
+        printf("Test 11 failed \n \n");
+    }
+
+    freeMemMatrix(&test);
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -429,4 +454,7 @@ int main()
     TEST_9_sortByDistances();
 
     TEST_10_countEqClassesByRowsSum();
+
+    TEST_11_getNSpecialElement();
+    
 }

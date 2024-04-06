@@ -59,6 +59,7 @@ long long   findSumOfMaxesOfPseudoDiagonal          (matrix *m);
 int         getMinInArea                            (matrix *m);
 int         countNUnique                            (long long *a, int n);
 int         countEqClassesByRowsSum                 (matrix *m);
+int         getNSpecialElement                      (matrix *m);
 matrix      createMatrixFromArray                   (int *a, int nRows, int nCols);
 matrix     *createArrayOfMatrixFromArray            (const int *values, int nMatrices, int nRows, int nCols);
 #endif // MATRIX_H
