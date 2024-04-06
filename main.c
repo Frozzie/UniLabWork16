@@ -458,6 +458,49 @@ void TEST_12_getNSpecialElement(void)
     }
 }
 
+void TEST_13_countNonDescendingRowsMatrices(void)
+{
+    #define AMOUNT_MAT_1 4
+    int data[AMOUNT_MAT_1][4] =
+    {
+        {
+            7, 1,
+            1, 1
+        },
+        {
+            1, 6,
+            2, 2
+        },
+        {
+            5, 4,
+            2, 3
+        },
+        {
+            1, 3,
+            7, 9
+        }
+    };
+
+
+    matrix *test = getMemArrayOfMatrices(AMOUNT_MAT_1, 3, 2);
+
+    for(int i = 0; i < AMOUNT_MAT_1; i++)
+    {
+        matrix a = test[i];
+        memcpy(a.values[0], &data[i][0], sizeof(int) * 2);
+        memcpy(a.values[1], &data[i][2], sizeof(int) * 2);
+    }
+
+    if(countNonDescendingRowsMatrices(test, 4) == 2)
+    {
+        printf("Test 13 passed \n \n");
+    }
+    else
+    {
+        printf("Test 13 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -483,4 +526,6 @@ int main()
     TEST_11_getNSpecialElement(); 
 
     TEST_12_getNSpecialElement();
+
+    TEST_13_countNonDescendingRowsMatrices();
 }
