@@ -623,6 +623,62 @@ void TEST_15_printMatrixWithMinNumOfMaxNum(void)
     printf("\nTest 15 passed \n \n");
 }
 
+void TEST_16_getNSpecialElement2(void)
+{
+    int data[16] =
+    {
+        2, 3, 5, 5, 4,
+        6, 2, 3, 8, 12,
+        12, 12, 2, 1, 2
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 5);
+    
+    int special = 0;
+
+    for(int i = 0; i < test.nRows; i++)
+    {
+        int prev_min_num = INT32_MAX, num, next_max_num = INT32_MIN;
+
+        for(int j = 0; j < test.nCols; j++)
+        {
+            for(int k = 0; k < j; k++)
+            {
+                num = getElementMatrix(&test, i, k);
+
+                if(prev_min_num > num)
+                {
+                    prev_min_num = num;
+                }
+            }
+
+            for(int k = j + 1; k < test.nCols; k++)
+            {
+                num = getElementMatrix(&test, i, k);
+
+                if(next_max_num < num)
+                {
+                    next_max_num = num;
+                }
+            }
+
+            if(prev_min_num < num && num < next_max_num)
+            {
+                special++;
+            }
+        }
+    }
+
+    if(special == 4)
+    {
+        printf("Test 16 passed \n \n");
+    }
+    else
+    {
+        printf("Test 16 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -654,4 +710,6 @@ int main()
     TEST_14_printMatrixWithMaxZeroRows();
 
     TEST_15_printMatrixWithMinNumOfMaxNum();
+
+    TEST_16_getNSpecialElement2();
 }
