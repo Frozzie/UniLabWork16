@@ -72,6 +72,8 @@ double      getScalarProduct                        (int *a, int *b, int n);
 double      getVectorLength                         (int *a, int n);
 double      getCosine                               (int *a, int *b, int n);
 int         getVectorIndexWithMaxAngle              (matrix *m, int *b);
+long long   getScalarProductRowAndCol               (matrix *m, int i, int j);
+long long   getSpecialScalarProduct                 (matrix *m);
 matrix      createMatrixFromArray                   (int *a, int nRows, int nCols);
 matrix     *createArrayOfMatrixFromArray            (const int *values, int nMatrices, int nRows, int nCols);
 #endif // MATRIX_H

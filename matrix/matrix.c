@@ -830,6 +830,44 @@ int getVectorIndexWithMaxAngle(matrix *m, int *b)
     return vector_id;
 }
 
+long long getScalarProductRowAndCol(matrix *m, int i, int j)
+{
+    int *arr_Col = malloc(sizeof(int) * m->nRows);
+
+    getMatrixColumn(m, j, arr_Col);
+
+    return (long long)getScalarProduct(arr_Col, m->values[i], m->nCols);
+}
+
+long long getSpecialScalarProduct(matrix *m)
+{
+    int min = INT32_MAX, max = INT32_MIN, min_id, max_id;
+
+    for(int i = 0; i < m->nRows; i++)
+    {
+        for(int j = 0; j < m->nCols; j++)
+        {
+            int num = getElementMatrix(m, i, j);
+            
+            if(min > num)
+            {
+                min = num;
+                min_id = j;
+            }
+
+            if(max < num)
+            {
+                max = num;
+                max_id = i;
+            }
+        }
+    }
+
+    long long math = getScalarProductRowAndCol(m, max_id, min_id);
+
+    return math;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);

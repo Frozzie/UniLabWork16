@@ -708,6 +708,29 @@ void TEST_17_getVectorIndexWithMaxAngle(void)
     }
 }
 
+void TEST_18_getSpecialScalarProduct(void)
+{
+    int data[9] =
+    {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 3);
+    
+    long long num = getSpecialScalarProduct(&test);
+
+    if(num == 102)
+    {
+        printf("Test 18 passed \n \n");
+    }
+    else
+    {
+        printf("Test 18 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -743,4 +766,6 @@ int main()
     TEST_16_getNSpecialElement2();
 
     TEST_17_getVectorIndexWithMaxAngle();
+
+    TEST_18_getSpecialScalarProduct();
 }
