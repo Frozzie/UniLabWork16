@@ -68,6 +68,10 @@ int         countNonDescendingRowsMatrices          (matrix *ms, int nMatrix);
 int         countValues                             (const int *a, int n, int value);
 int         countZeroRows                           (matrix *m);
 void        printMatrixWithMaxZeroRows              (matrix *ms, int nMatrix);
+double      getScalarProduct                        (int *a, int *b, int n);
+double      getVectorLength                         (int *a, int n);
+double      getCosine                               (int *a, int *b, int n);
+int         getVectorIndexWithMaxAngle              (matrix *m, int *b);
 matrix      createMatrixFromArray                   (int *a, int nRows, int nCols);
 matrix     *createArrayOfMatrixFromArray            (const int *values, int nMatrices, int nRows, int nCols);
 #endif // MATRIX_H

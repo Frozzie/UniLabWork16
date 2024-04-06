@@ -779,6 +779,57 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix)
     }
 }
 
+double getScalarProduct(int *a, int *b, int n)
+{
+    double math = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        math += (double)a[i] * (double)b[i];
+    }
+
+    return math;
+}
+
+double getVectorLength(int *a, int n)
+{
+    double math = 0;
+    for(int i = 0; i < n; i++)
+    {
+        math += (double)a[i] * (double)a[i];
+    }
+
+    return sqrt(math);
+}
+
+double getCosine(int *a, int *b, int n)
+{
+    double math;
+
+    math = getScalarProduct(a,b,n) / (getVectorLength(a, n) * getVectorLength(b, n));
+
+    return math;
+}
+
+int getVectorIndexWithMaxAngle(matrix *m, int *b)
+{
+    double angle_max = 1.0;
+    int vector_id = 0;
+
+    for(int i = 0; i < m->nRows; i++)
+    {
+        double angle = getCosine(m->values[i], b, m->nCols);
+
+        if(angle_max > angle)
+        {
+            angle_max = angle;
+            vector_id = i;
+        }
+    }
+
+    return vector_id;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);

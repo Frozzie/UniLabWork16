@@ -679,6 +679,35 @@ void TEST_16_getNSpecialElement2(void)
     }
 }
 
+void TEST_17_getVectorIndexWithMaxAngle(void)
+{
+    int data[8] =
+    {
+        1, 2,
+        4, 5,
+        7, 8,
+        1, 4
+    };
+
+    matrix test = createMatrixFromArray(data, 4, 2);
+    
+    int comp_arr[2] = 
+    {
+        1, 1
+    };
+
+    int max_angle = getVectorIndexWithMaxAngle(&test, comp_arr);
+
+    if(max_angle == 3)
+    {
+        printf("Test 17 passed \n \n");
+    }
+    else
+    {
+        printf("Test 17 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -712,4 +741,6 @@ int main()
     TEST_15_printMatrixWithMinNumOfMaxNum();
 
     TEST_16_getNSpecialElement2();
+
+    TEST_17_getVectorIndexWithMaxAngle();
 }
