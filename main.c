@@ -328,6 +328,29 @@ void TEST_7_findSumOfMaxesOfPseudoDiagonal(void)
     }
 }
 
+void TEST_8_getMinInArea(void)
+{
+    int data[12] =
+    {
+        1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 4);
+
+    int min_in_area = getMinInArea(&test);
+
+    if(min_in_area == 2)
+    {
+        printf("Test 8 passed \n \n");
+    }
+    else
+    {
+        printf("Test 8 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -343,4 +366,6 @@ int main()
     TEST_6_isMutuallyInverseMatrices();
 
     TEST_7_findSumOfMaxesOfPseudoDiagonal();
+
+    TEST_8_getMinInArea();
 }

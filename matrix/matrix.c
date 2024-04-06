@@ -492,6 +492,44 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix *m)
     return sum;
 }
 
+int getMinInArea(matrix *m)
+{
+    int min = INT16_MAX, max = INT16_MIN, i_start, j_start;
+
+    for (int i = 0; i < m->nRows; i++)
+    {
+        for (int j = 0; j < m->nCols; j++)
+        {
+            int num = getElementMatrix(m, i, j);
+
+            if(max < num)
+            {
+                max = num;
+                i_start = i;
+                j_start = j;
+            }
+        }
+    }
+
+    for (int i = 0; i < m->nRows; i++)
+    {
+        for(int j = 0; j < m->nCols; j++)
+        {
+            if(i >= i_start - j - 1  && i <= i_start + j - 1)
+            {
+                int num = getElementMatrix(m, i, j);
+
+                if(min > num)
+                {
+                    min = num;
+                }
+            }
+        }
+    }
+
+    return min;
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);
