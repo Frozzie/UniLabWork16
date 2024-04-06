@@ -719,6 +719,66 @@ int countNonDescendingRowsMatrices(matrix *ms, int nMatrix)
     return count;
 }
 
+int countValues(const int *a, int n, int value)
+{
+    int count = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] == value)
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int countZeroRows(matrix *m)
+{
+    int count = 0;
+
+    for(int i = 0; i < m->nRows; i++)
+    {
+        if(countValues(m->values[i], m->nCols, 0) == m->nCols)
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix)
+{
+    int count = 0, max = INT32_MIN;
+    int *num_zero_rows = malloc(sizeof(int) * nMatrix);
+    matrix mat;
+
+    for(int i = 0; i < nMatrix; i++)
+    {
+        mat = ms[i];
+        
+        num_zero_rows[i] = countZeroRows(&mat);
+
+        if(max < num_zero_rows[i])
+        {
+            max = num_zero_rows[i];
+        }
+    }
+
+    for(int i = 0; i < nMatrix; i++)
+    {
+        if(num_zero_rows[i] == max)
+        {
+            mat = ms[i];
+            
+            outputMatrix(&mat);
+            printf("\n");
+        }
+    }
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);

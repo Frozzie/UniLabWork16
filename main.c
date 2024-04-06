@@ -501,6 +501,52 @@ void TEST_13_countNonDescendingRowsMatrices(void)
     }
 }
 
+void TEST_14_printMatrixWithMaxZeroRows(void)
+{
+    #define AMOUNT_MAT_2 5
+    int data[AMOUNT_MAT_2][6] =
+    {
+        {
+            0, 1, 1, 0, 0, 0
+        },
+        {
+            1, 1,
+            2, 1,
+            1, 1
+        },
+        {
+            0, 0,
+            0, 0,
+            4, 7
+        },
+        {
+            0, 0,
+            0, 1,
+            0, 0
+        },
+        {
+            0, 1,
+            0, 2,
+            0, 3
+        }
+    };
+
+
+    matrix *test = getMemArrayOfMatrices(AMOUNT_MAT_2, 3, 2);
+
+    for(int i = 0; i < AMOUNT_MAT_2; i++)
+    {
+        matrix a = test[i];
+        memcpy(a.values[0], &data[i][0], sizeof(int) * 2);
+        memcpy(a.values[1], &data[i][2], sizeof(int) * 2);
+        memcpy(a.values[2], &data[i][4], sizeof(int) * 2);
+    }
+
+    printMatrixWithMaxZeroRows(test, 4);
+    
+    printf("Test 14 passed \n \n");
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -528,4 +574,6 @@ int main()
     TEST_12_getNSpecialElement();
 
     TEST_13_countNonDescendingRowsMatrices();
+
+    TEST_14_printMatrixWithMaxZeroRows();
 }
