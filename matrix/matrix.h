@@ -60,6 +60,8 @@ int         getMinInArea                            (matrix *m);
 int         countNUnique                            (long long *a, int n);
 int         countEqClassesByRowsSum                 (matrix *m);
 int         getNSpecialElement                      (matrix *m);
+int         getLeftMin                              (matrix *m);
+void        swapPenultimateRow                      (matrix *m, int n);
 matrix      createMatrixFromArray                   (int *a, int nRows, int nCols);
 matrix     *createArrayOfMatrixFromArray            (const int *values, int nMatrices, int nRows, int nCols);
 #endif // MATRIX_H

@@ -433,6 +433,31 @@ void TEST_11_getNSpecialElement(void)
     freeMemMatrix(&test);
 }
 
+void TEST_12_getNSpecialElement(void)
+{
+    int data[9] =
+    {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 1
+    };
+
+    matrix test = createMatrixFromArray(data, 3, 3);
+
+    int min_j = getLeftMin(&test);
+    
+    swapPenultimateRow(&test, min_j);
+
+    if(getElementMatrix(&test, 1, 2) == 7)
+    {
+        printf("Test 12 passed \n \n");
+    }
+    else
+    {
+        printf("Test 12 failed \n \n");
+    }
+}
+
 int main()
 {
     TEST_1_swapMinMaxRows();
@@ -455,6 +480,7 @@ int main()
 
     TEST_10_countEqClassesByRowsSum();
 
-    TEST_11_getNSpecialElement();
-    
+    TEST_11_getNSpecialElement(); 
+
+    TEST_12_getNSpecialElement();
 }

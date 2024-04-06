@@ -634,6 +634,34 @@ int getNSpecialElement(matrix *m)
     return special;
 }
 
+int getLeftMin(matrix *m)
+{
+    int min = INT16_MAX, min_j;
+    for(int i = 0; i < m->nCols; i++)
+    {
+        for(int j = 0; j < m->nRows; j++)
+        {
+            int num = getElementMatrix(m, i, j);
+            if(min > num)
+            {
+                min = num;
+                min_j = j;
+            }
+        }
+    }
+
+    return min_j;
+}
+
+void swapPenultimateRow(matrix *m, int n)
+{
+    int mem_col[m->nCols];
+
+    getMatrixColumn(m, n, mem_col);
+
+    memcpy(m->values[m->nCols - 2], mem_col, m->nCols * sizeof(int));
+}
+
 matrix createMatrixFromArray(int *a, int nRows, int nCols) 
 {
     matrix m = getMemMatrix(nRows, nCols);
